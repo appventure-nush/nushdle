@@ -12,6 +12,7 @@
     <meta property="og:description" content="NUS High's very own version of Wordle">
     <title>NUSHdle</title>
     <link href="./style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/dist/output.css" rel="stylesheet">
     <style>
         a {
             text-shadow: none;
@@ -27,16 +28,50 @@
     </style>
 </head>
 
-<body>
+<body class="">
     <a href="">
         <h1 style="font-size: 40pt;">NUSHdle</h1>
     </a>
 
     <p></p>
-    <div style="text-shadow: none;">
+    <div class="place-content-center" style="text-shadow: none;">
         <!-- add wordle layout here -->
+        <ul class="grid gap-2.5 place-content-center justify-items-center list-none justify-items-center w-full ">
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess1"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-100 text-white"
+                    placeholder="Guess 1" required autocomplete="off">
+            </li>
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess2"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                    placeholder="Guess 2" required autocomplete="off">
+            </li>
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess3"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                    placeholder="Guess 3" required autocomplete="off">
+            </li>
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess4"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                    placeholder="Guess 4" required autocomplete="off">
+            </li>
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess5"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                    placeholder="Guess 5" required autocomplete="off">
+            </li>
+            <li class="w-full md:w-96 grid place-content-center">
+                <input type="text" id="guess6"
+                    class="w-80 border text-sm rounded-lg block p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+                    placeholder="Guess 6" required autocomplete="off">
+            </li>
+
+        </ul>
     </div>
 
 </body>
+<script defer src="index.js"></script>
 
 </html>
