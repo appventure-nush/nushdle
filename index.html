@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="NUSHdle">
+    <meta name="title" content="nushdle.">
     <meta name="description" content="NUS High's very own version of Wordle">
-    <meta name="theme-color" content="#009a90">
+    <meta name="theme-color" content="#19A7A7">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="NUSHdle">
+    <meta property="og:title" content="nushdle.">
     <meta property="og:description" content="NUS High's very own version of Wordle">
-    <title>NUSHdle</title>
+    <title>nushdle.</title>
     <link href="./style.css" rel="stylesheet" type="text/css" media="all">
+    <script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
   <style>
     a {
       text-shadow: none;
@@ -22,13 +23,64 @@
     a:hover.nohover {
       text-shadow: none;
     }
+
+    .transition-fade {
+        transition: opacity 0.4s 1s;
+        opacity: 1;
+    }
+
+    html.is-animating .transition-fade {
+        opacity: 0;
+    }
+
+    @-moz-keyframes slideUp {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes slideUp {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@-o-keyframes slideUp {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.scroll-anchors > * {
+  display: block;
+  margin: 1000px 0;
+}
+
+.no-transitions * {
+  transition: none !important;
+}
   </style>
 </head>
 
 <body>
-
+<main id="swup" class="transition-fade">
   <a href="game.html">
-    <h1 style="font-size: 60pt;">NUSHdle</h1>
+    <h1 style="font-size: 60pt;"><span style="color:#19A7A7;">nush</span>dle.</h1>
 </a>
 
   <p></p>
@@ -38,8 +90,11 @@
     <h2 id="6"><a href="account.html"     style="color: mediumpurple;">account</a></h2>
   </div>
 
-  <!-- <script type="module" src="js/index.js"></script> -->
-
+  
+</main>
+<script>
+    const swup = new Swup(); // only this line when included with script tag
+</script>
 </body>
 
 </html>
