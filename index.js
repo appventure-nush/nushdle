@@ -237,35 +237,11 @@ for (let i = 1; i <= 6; i++) {
 let activeInput = document.getElementById('guess1');
 
 function onKeyPress(event) {
-    console.log('onKeyPress');
+    let val = this.value; // get string in the textbox
 
     if (event.code === 'Enter') {
-        // deactivate earlier input box
-        let currentElement = document.getElementById(`guess${activeGuess}`);
-        currentElement.disabled = true;
-        currentElement.classList.remove('text-white');
-        currentElement.classList.add('text-slate-400');
-
-        // TODO: check if answer is correct here
-
-        if (activeGuess < 6) activeGuess++;
-        else {
-            // TODO: do smth for game over
-            return;
-        }
-
-        // 'activate' next input box
-        currentElement = document.getElementById(`guess${activeGuess}`);
-        currentElement.disabled = false;
-        currentElement.classList.remove('placeholder-gray-400');
-        currentElement.classList.add('placeholder-gray-100');
-
-        activeInput = document.getElementById(`guess${activeGuess}`);
-        return;
+        return answerEntered(val);
     }
-    let val = this.value; // get string in the textbox
-    // console.log(a, b, i, val);
-
     // update autocomplete
 
     // close any already open lists of autocompleted values
@@ -295,15 +271,45 @@ function onKeyPress(event) {
             subdiv.innerHTML += `<input type='hidden' value='${places[i]}'>`;
             // execute a function when clicked on the item
             subdiv.addEventListener('click', function (e) {
-                /*insert the value for the autocomplete text field:*/
+                //insert the value for the autocomplete text field:
                 activeInput.value = this.getElementsByTagName('input')[0].value;
-                /*close the list of autocompleted values,
-                (or any other open lists of autocompleted values:*/
+
+                // close the list of autocompleted values, (or any other open lists of autocompleted values:
                 closeAllLists();
+
+                // enter the answer
+                answerEntered(activeInput.value);
             });
             div.appendChild(subdiv);
         }
     }
+}
+
+function answerEntered(val) {
+    // deactivate earlier input box
+    let currentElement = document.getElementById(`guess${activeGuess}`);
+    currentElement.disabled = true;
+    currentElement.classList.remove('text-white');
+    currentElement.classList.add('text-slate-400');
+
+    // TODO: check if answer is correct here
+    if (val == 'Afghanistan') {
+        alert('congrats');
+    }
+
+    if (activeGuess < 6) activeGuess++;
+    else {
+        // TODO: do smth for game over
+        return;
+    }
+
+    // 'activate' next input box
+    currentElement = document.getElementById(`guess${activeGuess}`);
+    currentElement.disabled = false;
+    currentElement.classList.remove('placeholder-gray-400');
+    currentElement.classList.add('placeholder-gray-100');
+
+    activeInput = document.getElementById(`guess${activeGuess}`);
 }
 
 function closeAllLists(elmnt) {
