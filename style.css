@@ -158,3 +158,12 @@ hr {
     max-height: 90%;
     overflow: auto;
 }
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+.autocomplete-items {
+    text-align: left;
+    margin: 0.75rem;
+}
