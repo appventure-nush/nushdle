@@ -225,6 +225,7 @@ let places = [
 
 let activeGuess = 1;
 let win = false;
+let correct = places[9];
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
@@ -299,7 +300,6 @@ function answerEntered(val) {
     let currentElement = document.getElementById(`guess${activeGuess}`);
     currentElement.disabled = true;
 
-    let correct = places[9];
     let answer = places.find((e) => e.name == val);
 
     let dx = correct.x - answer.x;
@@ -318,7 +318,6 @@ function answerEntered(val) {
 
     // set z-axis arrow emoji
     let vertical = document.getElementById(`vertical${activeGuess}`);
-    console.log(vertical.innerText);
     if (win) vertical.innerText = '🎉';
     else if (dz < 0) vertical.innerText = '⬇️';
     else if (dz > 0) vertical.innerText = '⬆️';
@@ -331,8 +330,12 @@ function answerEntered(val) {
     distance = (1 - distance / Math.sqrt(3)) * 100;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
-    if (activeGuess > 6) {
+    if (activeGuess >= 6) {
         // game over
+        // show the answer:
+        const ans = document.getElementById('ans');
+        ans.innerText = `The answer was ${correct.name}`;
+        ans.classList.toggle('hidden');
         return;
     } else if (win) {
         // you won
@@ -344,7 +347,10 @@ function answerEntered(val) {
     currentElement.disabled = false;
     currentElement.classList.remove('placeholder-gray-400');
     currentElement.classList.add('placeholder-gray-100');
-
+    // set cursor on next input
+    currentElement.focus();
+    currentElement.select();
+    // update activeInput variable
     activeInput = document.getElementById(`guess${activeGuess}`);
 }
 
