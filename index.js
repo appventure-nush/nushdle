@@ -297,10 +297,7 @@ function answerEntered(val) {
     // deactivate earlier input box
     let currentElement = document.getElementById(`guess${activeGuess}`);
     currentElement.disabled = true;
-    currentElement.classList.remove('text-white');
-    currentElement.classList.add('text-slate-400');
 
-    console.log(val);
     if (val == 'place 10') {
         // TODO: do something for winning
         alert('congrats');
@@ -310,18 +307,30 @@ function answerEntered(val) {
     let correct = places[9];
     let answer = places.find((e) => e.name == val);
 
-    let theta = Math.atan2(correct.x - answer.x, correct.y - answer.y); // it looks cursed but trust me I did the math
-    theta /= Math.PI / 180; // convert radian to deg
+    let dx = correct.x - answer.x;
+    let dy = correct.y - answer.y;
+    let dz = correct.z - answer.z;
 
+    // it looks cursed but trust me I did the math
+    let theta = (Math.atan2(dx, dy) / Math.PI) * 180;
+
+    // rotate NSEW arrow accordingly
     let arrow = document.getElementById(`arrow${activeGuess}`);
-    arrow.style = `transform: rotate(${Math.round(theta)}deg)`; // rotate arrow accordingly
+    arrow.style = `transform: rotate(${Math.round(theta)}deg)`;
     arrow.classList.toggle('invisible'); // make arrow visible
 
+    // set z-axis arrow emoji
     let vertical = document.getElementById(`vertical${activeGuess}`);
-    if (correct.z > answer.z) vertical.innerText == '⬇️';
-    else if (correct.x < answer.z) vertical.innerText == '⬆️';
+    if (dz > 0) vertical.innerText == '⬇️';
+    else if (dz < 0) vertical.innerText == '⬆️';
     else vertical.innerText == '🔛';
     vertical.classList.toggle('invisible');
+
+    // set green bar:
+    let distance = Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2);
+    // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
+    distance = (Math.sqrt(3) - distance) * 100;
+    currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
     if (activeGuess < 6) activeGuess++;
     else {
