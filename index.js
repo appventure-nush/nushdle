@@ -240,7 +240,13 @@ function onKeyPress(event) {
     let val = this.value; // get string in the textbox
 
     if (event.code === 'Enter') {
-        return answerEntered(val);
+        // find place that matches half-filled text:
+        let selectedPlace = places.find((place) => place.name.substr(0, val.length).toUpperCase() == val.toUpperCase());
+        if (selectedPlace) {
+            this.value = selectedPlace.name;
+            closeAllLists();
+            return answerEntered(selectedPlace.name);
+        }
     }
     // update autocomplete
 
@@ -253,7 +259,7 @@ function onKeyPress(event) {
     // create a div that will contain all the autocomplete values...
     let div = document.createElement('DIV');
     div.setAttribute('id', this.id + 'autocomplete-list');
-    div.setAttribute('class', 'autocomplete-items');
+    div.setAttribute('class', 'autocomplete-items max-h-80 overflow-auto');
     // ... and append it as a child of the autocomplete container:
     this.parentNode.parentNode.appendChild(div);
 
@@ -294,9 +300,11 @@ function answerEntered(val) {
     currentElement.classList.remove('text-white');
     currentElement.classList.add('text-slate-400');
 
-    if (val == 'place10') {
+    console.log(val);
+    if (val == 'place 10') {
         // TODO: do something for winning
         alert('congrats');
+        console.log('congrats');
     }
 
     let correct = places[9];

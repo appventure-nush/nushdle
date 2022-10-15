@@ -167,3 +167,12 @@ hr {
     text-align: left;
     margin: 0.75rem;
 }
+
+div::-webkit-scrollbar {
+    width: 1rem;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
