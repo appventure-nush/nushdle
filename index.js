@@ -310,7 +310,7 @@ function answerEntered(val) {
     let dx = correct.x - answer.x;
     let dy = correct.y - answer.y;
     let dz = correct.z - answer.z;
-
+    console.log(dz);
     // it looks cursed but trust me I did the math
     let theta = (Math.atan2(dx, dy) / Math.PI) * 180;
 
@@ -321,9 +321,10 @@ function answerEntered(val) {
 
     // set z-axis arrow emoji
     let vertical = document.getElementById(`vertical${activeGuess}`);
-    if (dz > 0) vertical.innerText == '⬇️';
-    else if (dz < 0) vertical.innerText == '⬆️';
-    else vertical.innerText == '🔛';
+    console.log(vertical.innerText);
+    if (dz < 0) vertical.innerText = '⬇️';
+    else if (dz > 0) vertical.innerText = '⬆️';
+    else vertical.innerText = '🔛';
     vertical.classList.toggle('invisible');
 
     // set green bar:
