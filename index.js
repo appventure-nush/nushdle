@@ -224,6 +224,7 @@ let places = [
 ];
 
 let activeGuess = 1;
+let win = false;
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
@@ -298,46 +299,45 @@ function answerEntered(val) {
     let currentElement = document.getElementById(`guess${activeGuess}`);
     currentElement.disabled = true;
 
-    if (val == 'place 10') {
-        // TODO: do something for winning
-        alert('congrats');
-        console.log('congrats');
-    }
-
     let correct = places[9];
     let answer = places.find((e) => e.name == val);
 
     let dx = correct.x - answer.x;
     let dy = correct.y - answer.y;
     let dz = correct.z - answer.z;
-    console.log(dz);
+
+    let win = dx == 0 && dy == 0 && dz == 0;
     // it looks cursed but trust me I did the math
     let theta = (Math.atan2(dx, dy) / Math.PI) * 180;
 
     // rotate NSEW arrow accordingly
     let arrow = document.getElementById(`arrow${activeGuess}`);
     arrow.style = `transform: rotate(${Math.round(theta)}deg)`;
-    arrow.classList.toggle('invisible'); // make arrow visible
+    // make arrow visible, only if guess is off
+    if (dx != 0 || dy != 0) arrow.classList.toggle('invisible');
 
     // set z-axis arrow emoji
     let vertical = document.getElementById(`vertical${activeGuess}`);
     console.log(vertical.innerText);
-    if (dz < 0) vertical.innerText = '⬇️';
+    if (win) vertical.innerText = '🎉';
+    else if (dz < 0) vertical.innerText = '⬇️';
     else if (dz > 0) vertical.innerText = '⬆️';
-    else vertical.innerText = '🔛';
+    else if (dz == 0) vertical.innerText = '🔛';
     vertical.classList.toggle('invisible');
 
     // set green bar:
     let distance = Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2);
     // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
-    distance = (Math.sqrt(3) - distance) * 100;
+    distance = (1 - distance / Math.sqrt(3)) * 100;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
-    if (activeGuess < 6) activeGuess++;
-    else {
-        // TODO: do smth for game over
+    if (activeGuess > 6) {
+        // game over
         return;
-    }
+    } else if (win) {
+        // you won
+        return;
+    } else activeGuess++;
 
     // 'activate' next input box
     currentElement = document.getElementById(`guess${activeGuess}`);
