@@ -242,7 +242,7 @@ function onKeyPress(event) {
     let val = this.value; // get string in the textbox
 
     if (event.code === 'Enter') {
-        // find place that matches half-filled text:
+        // find place that matches half-filled text - autocomplete algorithm is used here btw:
         let selectedPlace = places.find((place) => place.name.substr(0, val.length).toUpperCase() == val.toUpperCase());
         if (selectedPlace) {
             this.value = selectedPlace.name;
@@ -267,7 +267,7 @@ function onKeyPress(event) {
 
     // for each prompt to be shown...
     for (i = 0; i < places.length; i++) {
-        // check if the prompt starts with the same letters as input - can replace with more fancy fuzzy searching later
+        // check if the prompt starts with the same letters as input as autocomplete algorithm - can replace with more fancy fuzzy searching later
         let obj = places[i];
         let name = obj.name;
         if (name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
@@ -306,39 +306,43 @@ function answerEntered(val) {
     let dy = correct.y - answer.y;
     let dz = correct.z - answer.z;
 
-    let win = dx == 0 && dy == 0 && dz == 0;
-    // it looks cursed but trust me I did the math
-    let theta = (Math.atan2(dx, dy) / Math.PI) * 180;
+    // temp scaling:
+    dx *= 10;
+    dy *= 10;
+    dz *= 10;
 
-    // rotate NSEW arrow accordingly
-    let arrow = document.getElementById(`arrow${activeGuess}`);
-    arrow.style = `transform: rotate(${Math.round(theta)}deg)`;
-    // make arrow visible, only if guess is off
-    if (dx != 0 || dy != 0) arrow.classList.toggle('invisible');
+    let distance = Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2);
 
-    // set z-axis arrow emoji
-    let vertical = document.getElementById(`vertical${activeGuess}`);
-    if (win) vertical.innerText = '🎉';
-    else if (dz < 0) vertical.innerText = '⬇️';
-    else if (dz > 0) vertical.innerText = '⬆️';
-    else if (dz == 0) vertical.innerText = '🔛';
-    vertical.classList.toggle('invisible');
+    let win = distance == 0;
+
+    let exactDist = document.getElementById(`dist${activeGuess}`);
+    let floor = document.getElementById(`floor${activeGuess}`);
+
+    exactDist.innerText = `${distance.toFixed(1)}m`;
+    floor.innerText = `${(dz < 0 ? '' : '+') + dz.toFixed(0)}`; // add plus sign if positive
+
+    if (win) {
+        console.log('win');
+        floor.innerText = '🎉';
+        exactDist.classList.toggle('invisible');
+    }
 
     // set green bar:
-    let distance = Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2);
     // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
-    distance = (1 - distance / Math.sqrt(3)) * 100;
+    distance = (10 - distance / 10) * 10;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
-    if (activeGuess >= 6) {
+    if (win) {
+        const ans = document.getElementById('ans');
+        ans.innerText = `🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`;
+        ans.classList.toggle('hidden');
+        return;
+    } else if (activeGuess >= 6) {
         // game over
         // show the answer:
         const ans = document.getElementById('ans');
         ans.innerText = `The answer was ${correct.name}`;
         ans.classList.toggle('hidden');
-        return;
-    } else if (win) {
-        // you won
         return;
     } else activeGuess++;
 
