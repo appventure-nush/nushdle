@@ -311,7 +311,7 @@ function answerEntered(val) {
     dy *= 10;
     dz *= 10;
 
-    let distance = Math.sqrt(dx ** 2 + dy ** 2 + dz ** 2);
+    let distance = Math.sqrt(dx ** 2 + dy ** 2);
 
     let win = distance == 0;
 
@@ -319,7 +319,7 @@ function answerEntered(val) {
     let floor = document.getElementById(`floor${activeGuess}`);
 
     exactDist.innerText = `${distance.toFixed(1)}m`;
-    floor.innerText = `${(dz < 0 ? '' : '+') + dz.toFixed(0)}`; // add plus sign if positive
+    floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
     if (win) {
         console.log('win');
