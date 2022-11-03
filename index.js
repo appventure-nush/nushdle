@@ -225,9 +225,8 @@ let places = [
 
 let activeGuess = 1;
 let win = false;
-let correct = places[9];
-let x = Math.floor((mulberry32(cyrb32("10-10-2022"))()*100000))%32
-console.log(x);
+let date = getDate();
+let correct = places[Math.floor((mulberry32(cyrb32(date))()*100000))%32];
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
@@ -240,6 +239,20 @@ for (let i = 1; i <= 6; i++) {
 
 let activeInput = document.getElementById('guess1');
 
+//cookie shenanigans
+if(!checkCookieExists("date") || getCookieValue("date") != date.toString()){
+    deleteCookies();
+    document.cookie = "date=" + date.toString(0);
+}
+else{
+    for (let i = 1; i <= 6; i++) {
+        if(checkCookieExists('guess' + i.toString())){
+            answerEntered(getCookieValue('guess' + i.toString()));
+        }
+    }
+}
+
+// actual functions
 function onKeyPress(event) {
     let val = this.value; // get string in the textbox
 
@@ -300,6 +313,7 @@ function onKeyPress(event) {
 function answerEntered(val) {
     // deactivate earlier input box
     let currentElement = document.getElementById(`guess${activeGuess}`);
+    currentElement.value = val;
     currentElement.disabled = true;
 
     let answer = places.find((e) => e.name == val);
@@ -334,6 +348,8 @@ function answerEntered(val) {
     distance = (10 - distance / 10) * 10;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
+    document.cookie = "guess" + activeGuess.toString() + "=" + val + ";";
+
     if (win) {
         const ans = document.getElementById('ans');
         ans.innerText = `🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`;
@@ -346,7 +362,9 @@ function answerEntered(val) {
         ans.innerText = `The answer was ${correct.name}`;
         ans.classList.toggle('hidden');
         return;
-    } else activeGuess++;
+    } else{
+        activeGuess++;
+    };
 
     // 'activate' next input box
     currentElement = document.getElementById(`guess${activeGuess}`);
@@ -389,14 +407,27 @@ function cyrb32(str) {
 
 function mulberry32(a) {
     return function() {
-      var t = a += 0x6D2B79F5;
-      t = Math.imul(t ^ t >>> 15, t | 1);
-      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
     }
 }
 
 function getDate() {
     const d = new Date();
     return d.getUTCDate().toString()+"-"+d.getUTCMonth().toString()+"-"+d.getUTCFullYear().toString();
+}
+
+// cookie code
+function checkCookieExists(str) {
+    return document.cookie.split(';').some((item) => item.trim().startsWith(str + '='));
+}
+
+function getCookieValue(str) {
+    return document.cookie.split('; ').find((row) => row.startsWith(str + '='))?.split('=')[1];
+}
+
+function deleteCookies() {
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 }
