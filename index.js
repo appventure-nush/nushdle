@@ -1,228 +1,200 @@
 let places = [
     {
-        name: 'place 1',
-        x: 0,
-        y: 0,
-        z: 0.854178288
+        name: 'Admin Office',
+        x: 482.0,
+        y: 390.0,
+        z: 3.0
     },
     {
-        name: 'place 2',
-        x: 0.512582208,
-        y: 0.134471841,
-        z: 0.920822741
+        name: 'Lower Auditorium',
+        x: 482.0,
+        y: 390.0,
+        z: 4.0
     },
     {
-        name: 'place 3',
-        x: 0.202778892,
-        y: 0.820380186,
-        z: 0.454834828
+        name: 'Upper Auditorium',
+        x: 482.0,
+        y: 390.0,
+        z: 5.0
     },
     {
-        name: 'place 4',
-        x: 0.770676901,
-        y: 0.292151368,
-        z: 0.375406863
+        name: 'Seminar Room 2A',
+        x: 386.0,
+        y: 368.0,
+        z: 6.0
     },
     {
-        name: 'place 5',
-        x: 0.526588985,
-        y: 0.437756311,
-        z: 0.08265056
+        name: 'Chemistry Lab 3',
+        x: 386.0,
+        y: 368.0,
+        z: 3.0
     },
     {
-        name: 'place 6',
-        x: 0.387084723,
-        y: 0.175070959,
-        z: 0.130626088
+        name: 'Seminar Room 2B',
+        x: 386.0,
+        y: 337.0,
+        z: 6.0
     },
     {
-        name: 'place 7',
-        x: 0.529835023,
-        y: 0.732157954,
-        z: 0.987092154
+        name: 'Chemistry Lab 2',
+        x: 386.0,
+        y: 327.0,
+        z: 3.0
     },
     {
-        name: 'place 8',
-        x: 0.866641749,
-        y: 0.550039491,
-        z: 0.254233701
+        name: 'Seminar Room 2C',
+        x: 386.0,
+        y: 317.0,
+        z: 6.0
     },
     {
-        name: 'place 9',
-        x: 0.124388519,
-        y: 0.613100631,
-        z: 0.651592196
+        name: 'Seminar Room 1',
+        x: 450.0,
+        y: 316.0,
+        z: 6.0
     },
     {
-        name: 'place 10',
-        x: 1,
-        y: 1,
-        z: 0.304884091
+        name: 'Chemistry Lab 1',
+        x: 450.0,
+        y: 316.0,
+        z: 3.0
     },
     {
-        name: 'place 11',
-        x: 0.864972,
-        y: 0.567332734,
-        z: 0.607666
+        name: 'Math ICT Lab',
+        x: 330.0,
+        y: 364.0,
+        z: 6.0
     },
     {
-        name: 'place 12',
-        x: 0.454144676,
-        y: 0.166723767,
-        z: 0.97369145
+        name: 'Biology Lab 1',
+        x: 330.0,
+        y: 364.0,
+        z: 3.0
     },
     {
-        name: 'place 13',
-        x: 0.149843492,
-        y: 0.271396392,
-        z: 0.285288677
+        name: 'Applied Technology Lab',
+        x: 269.0,
+        y: 373.0,
+        z: 6.0
     },
     {
-        name: 'place 14',
-        x: 0.421403724,
-        y: 0.578683188,
-        z: 0.012462762
+        name: 'Biology Lab 2',
+        x: 269.0,
+        y: 373.0,
+        z: 3.0
     },
     {
-        name: 'place 15',
-        x: 0.798234045,
-        y: 0.862729883,
-        z: 0.509267117
+        name: 'Clean Energy Lab',
+        x: 284.0,
+        y: 326.0,
+        z: 6.0
     },
     {
-        name: 'place 16',
-        x: 0.269594915,
-        y: 0.17984353,
-        z: 0.455789703
+        name: 'Biology Lab 3',
+        x: 284.0,
+        y: 326.0,
+        z: 3.0
     },
     {
-        name: 'place 17',
-        x: 0.653122456,
-        y: 0.231764849,
-        z: 0.767309997
+        name: 'Netball Court',
+        x: 151.0,
+        y: 426.0,
+        z: 5.0
     },
     {
-        name: 'place 18',
-        x: 0.968293093,
-        y: 0.125573715,
-        z: 0.516575695
+        name: 'Hall',
+        x: 151.0,
+        y: 426.0,
+        z: 2.0
     },
     {
-        name: 'place 19',
-        x: 0.71600816,
-        y: 0.546025268,
-        z: 0.235038383
+        name: 'Lab Manager Room',
+        x: 232.0,
+        y: 340.0,
+        z: 6.0
     },
     {
-        name: 'place 20',
-        x: 0.230399119,
-        y: 0.506666407,
-        z: 0.79205129
+        name: 'Physics Lab 1',
+        x: 232.0,
+        y: 330.0,
+        z: 3.0
     },
     {
-        name: 'place 21',
-        x: 0.364725107,
-        y: 0.072736979,
-        z: 0.239337962
+        name: 'Computer Lab 3',
+        x: 232.0,
+        y: 330.0,
+        z: 4.0
     },
     {
-        name: 'place 22',
-        x: 0.37325166,
-        y: 0.045965876,
-        z: 0.912158849
+        name: 'Synthetic Chemistry Lab',
+        x: 232.0,
+        y: 320.0,
+        z: 6.0
     },
     {
-        name: 'place 23',
-        x: 0.079908996,
-        y: 0.867985361,
-        z: 0.845692398
+        name: 'IT Helpdesk',
+        x: 197.0,
+        y: 301.0,
+        z: 4.0
     },
     {
-        name: 'place 24',
-        x: 0.420590028,
-        y: 0.377059165,
-        z: 0.611572504
+        name: 'Computer Lab 2',
+        x: 197.0,
+        y: 282.0,
+        z: 4.0
     },
     {
-        name: 'place 25',
-        x: 0.588713259,
-        y: 0.333398537,
-        z: 0.843898888
+        name: 'Analytical Chemistry Lab',
+        x: 197.0,
+        y: 291.0,
+        z: 6.0
     },
     {
-        name: 'place 26',
-        x: 0.681889456,
-        y: 0.470399899,
-        z: 0.0032185
+        name: 'Physics Lab 2',
+        x: 197.0,
+        y: 291.0,
+        z: 3.0
     },
     {
-        name: 'place 27',
-        x: 0.628629997,
-        y: 0.958499407,
-        z: 0.402258287
+        name: 'Life Sciences Lab',
+        x: 173.0,
+        y: 330.0,
+        z: 6.0
     },
     {
-        name: 'place 28',
-        x: 0.45036783,
-        y: 0.264462527,
-        z: 0.516624691
+        name: 'Physics Lab 3',
+        x: 173.0,
+        y: 330.0,
+        z: 3.0
     },
     {
-        name: 'place 29',
-        x: 0.433360407,
-        y: 0.591688526,
-        z: 0.794473219
+        name: 'Computer Lab 1',
+        x: 173.0,
+        y: 330.0,
+        z: 4.0
     },
     {
-        name: 'place 30',
-        x: 0.089134372,
-        y: 0.802151858,
-        z: 0.778166946
+        name: 'Canteen',
+        x: 154.0,
+        y: 604.0,
+        z: 1.0
     },
     {
-        name: 'place 31',
-        x: 0.449221465,
-        y: 0.542458064,
-        z: 0.074239533
+        name: 'Concourse',
+        x: 323.0,
+        y: 410.0,
+        z: 3.0
     },
     {
-        name: 'place 32',
-        x: 0.925000515,
-        y: 0.48875095,
-        z: 0.398576421
-    },
-    {
-        name: 'place 33',
-        x: 0.646036362,
-        y: 0.557757669,
-        z: 0.12983435
-    },
-    {
-        name: 'place 34',
-        x: 0.763431532,
-        y: 0.104867496,
-        z: 0.585097398
-    },
-    {
-        name: 'place 35',
-        x: 0.839634804,
-        y: 0.86734811,
-        z: 0.151459945
-    },
-    {
-        name: 'place 36',
-        x: 0.965947101,
-        y: 0.535966137,
-        z: 0.429304387
-    },
-    {
-        name: 'place 37',
-        x: 0.20198144,
-        y: 0.751292298,
-        z: 0.490931551
+        name: 'Staffroom',
+        x: 323.0,
+        y: 410.0,
+        z: 2.0
     }
 ];
 
+let scaleFactor = 1.7353;
+let maxDistance = 414;
 let activeGuess = 1;
 let win = false;
 let date = getDate();
@@ -323,11 +295,9 @@ function answerEntered(val) {
     let dz = correct.z - answer.z;
 
     // temp scaling:
-    dx *= 10;
-    dy *= 10;
-    dz *= 10;
 
-    let distance = Math.sqrt(dx ** 2 + dy ** 2);
+    let distance = Math.sqrt(dx ** 2 + dy ** 2)/scaleFactor;
+    let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10)/scaleFactor;
 
     let win = distance == 0;
 
@@ -345,7 +315,7 @@ function answerEntered(val) {
 
     // set green bar:
     // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
-    distance = (10 - distance / 10) * 10;
+    distance = (maxDistance - trueDistance)/maxDistance * 100;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
     document.cookie = "guess" + activeGuess.toString() + "=" + val + ";";
