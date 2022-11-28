@@ -321,7 +321,7 @@ function answerEntered(val) {
     exactDist.innerText = `${distance.toFixed(1)}m`;
     floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
-    if (win) {
+    if (win && dz == 0) {
         console.log('win');
         floor.innerText = '🎉';
         exactDist.classList.toggle('invisible');
