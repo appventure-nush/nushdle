@@ -296,15 +296,14 @@ function answerEntered(val) {
 
     // temp scaling:
 
-    let ;
-    let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10)/scaleFactor;
+    let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10) / scaleFactor;
 
     let win = dx == 0 && dy == 0 && dz == 0;
 
     let exactDist = document.getElementById(`dist${activeGuess}`);
     let floor = document.getElementById(`floor${activeGuess}`);
     
-    innertext_distance = Math.sqrt(dx ** 2 + dy ** 2)/scaleFactor
+    innerTextDistance = Math.sqrt(dx ** 2 + dy ** 2) / scaleFactor
     exactDist.innerText = `${innertext_distance.toFixed(1)}m`;
     floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
