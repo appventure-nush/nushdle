@@ -193,6 +193,12 @@ let places = [
     }
 ];
 
+let scaleFactor = 1.7353;
+let activeGuess = 1;
+let win = false;
+let date = getDate();
+let correct = places[Math.floor((mulberry32(cyrb32(date))()*100000))%32];
+
 var maxDistance = 0;
 var distance;
 for (const place of places) {
@@ -201,11 +207,6 @@ for (const place of places) {
         maxDistance = distance;
     }
 }
-let scaleFactor = 1.7353;
-let activeGuess = 1;
-let win = false;
-let date = getDate();
-let correct = places[Math.floor((mulberry32(cyrb32(date))()*100000))%32];
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
