@@ -193,8 +193,8 @@ let places = [
     }
 ];
 
+var maxDistance = 0
 let scaleFactor = 1.7353;
-let maxDistance = 414;
 let activeGuess = 1;
 let win = false;
 let date = getDate();
@@ -314,7 +314,17 @@ function answerEntered(val) {
     }
 
     // set green bar:
-    // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
+    // scale the distance up, and make lower values of distance better
+    var distance;
+    // if maxdistance not set, set it
+    if (maxDistance == 0) {
+        for (const place of places) {
+            distance = (place.x - correct.x) ** 2 + (place.y - correct.y) ** 2 + 10 * (place.z - correct.z) ** 2;
+            if (maxDistance < distance) {
+                maxDistance = distance;
+            }
+        }
+    }
     distance = (maxDistance - trueDistance)/maxDistance * 100;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
 
@@ -324,6 +334,9 @@ function answerEntered(val) {
         const ans = document.getElementById('ans');
         ans.innerText = `🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`;
         ans.classList.toggle('hidden');
+        
+        // clear maxDistance for next time
+        maxDistance = 0;
         return;
     } else if (activeGuess >= 6) {
         // game over
@@ -331,6 +344,9 @@ function answerEntered(val) {
         const ans = document.getElementById('ans');
         ans.innerText = `The answer was ${correct.name}`;
         ans.classList.toggle('hidden');
+        
+        // clear maxDistance for next time
+        maxDistance = 0;
         return;
     } else {
         activeGuess++;
