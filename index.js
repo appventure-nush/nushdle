@@ -324,7 +324,7 @@ function answerEntered(val) {
 
     // set green bar:
     // scale the distance up, and make lower values of distance better
-    let distance_bar = (maxDistance - trueDistance)/maxDistance * 100;
+    let distance_bar = (1 - trueDistance / maxDistance) * 100;
     currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance_bar}%, #374151 ${distance_bar}% 100%)`;
 
     document.cookie = "guess" + activeGuess.toString() + "=" + val + ";";
