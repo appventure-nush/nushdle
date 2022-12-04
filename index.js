@@ -304,7 +304,7 @@ function answerEntered(val) {
     let floor = document.getElementById(`floor${activeGuess}`);
     
     let innerTextDistance = Math.sqrt(dx ** 2 + dy ** 2) / scaleFactor
-    exactDist.innerText = `${innertext_distance.toFixed(1)}m`;
+    exactDist.innerText = `${innerTextDistance.toFixed(1)}m`;
     floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
     if (win) {
