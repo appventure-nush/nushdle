@@ -296,18 +296,19 @@ function answerEntered(val) {
 
     // temp scaling:
 
-    let distance = Math.sqrt(dx ** 2 + dy ** 2)/scaleFactor;
+    let ;
     let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10)/scaleFactor;
 
-    let win = distance == 0;
+    let win = dx == 0 && dy == 0 && dz == 0;
 
     let exactDist = document.getElementById(`dist${activeGuess}`);
     let floor = document.getElementById(`floor${activeGuess}`);
-
-    exactDist.innerText = `${distance.toFixed(1)}m`;
+    
+    innertext_distance = Math.sqrt(dx ** 2 + dy ** 2)/scaleFactor
+    exactDist.innerText = `${innertext_distance.toFixed(1)}m`;
     floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
-    if (win && dz == 0) {
+    if (win) {
         console.log('win');
         floor.innerText = '🎉';
         exactDist.classList.toggle('invisible');
@@ -332,7 +333,7 @@ function answerEntered(val) {
         ans.innerText = `The answer was ${correct.name}`;
         ans.classList.toggle('hidden');
         return;
-    } else{
+    } else {
         activeGuess++;
     };
 
