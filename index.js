@@ -207,6 +207,7 @@ for (const place of places) {
         maxDistance = distance;
     }
 }
+maxDistance = Math.sqrt(maxDistance) / scaleFactor;
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
