@@ -311,6 +311,16 @@ function answerEntered(val) {
         console.log('win');
         floor.innerText = '🎉';
         exactDist.classList.toggle('invisible');
+        axios.post('http://peppered-aware-quiet.glitch.me/submit', {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
 
     // set green bar:
@@ -320,7 +330,7 @@ function answerEntered(val) {
 
     document.cookie = "guess" + activeGuess.toString() + "=" + val + ";";
 
-    if (win) {
+    if (win && dz==0) {
         const ans = document.getElementById('ans');
         ans.innerText = `🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉`;
         ans.classList.toggle('hidden');
