@@ -25,15 +25,15 @@
             text-shadow: none;
         }
 
-        #submitBtn {
+        .submitBtn {
             text-shadow: none;
         }
 
-        #submitBtn:hover {
+        .submitBtn:hover {
             text-shadow: 0px 0px 25px #00FF00, 0px 0px 25px #00FF00;
         }
 
-        #submitBtn:hover.nohover {
+        .submitBtn:hover.nohover {
             text-shadow: none;
         }
     </style>
@@ -60,7 +60,8 @@
                 </div>
             </li>
             <li>
-                <button id="submitBtn" onclick="makeAcc()">Create Account</button>
+                <button class="submitBtn" onclick="login()">Log in</button>
+                <button class="submitBtn" onclick="makeAcc()">Create Account</button>
             </li>
         </ul>
     </div>

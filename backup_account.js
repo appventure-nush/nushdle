@@ -11,7 +11,7 @@ function setPwdVisible() {
 }
 
 function login() {
-    console.log("Making account"); 
+    console.log("Logging in"); 
     if (checkCookieExists("uname")) {
         console.log("Logged in already")
         return "Logged in already"; 
@@ -37,6 +37,7 @@ function login() {
             }
         }
     }
+    /*
     //account doesn't exist yet, create it 
 
     const data = uname+","+pwd+",\n";
@@ -46,8 +47,50 @@ function login() {
     console.log('Account created');
     });
 
+    //let file = new File([""], "accountData1357908642.csv");*/
+
+}
+
+function makeAcc() {
+    console.log("Making account"); 
+    if (checkCookieExists("uname")) {
+        console.log("Logged in already")
+        return "Logged in already"; 
+    } 
+    let uname = document.getElementById("uname"); 
+    let pwd = document.getElementById("pwd"); 
+    let accounts = getAccounts(); 
+    let accObj = accounts.find(account=>account.username===uname)
+    if(accObj) {
+        console.log("Account with that username already exists");
+        return "Account with that username already exists";
+    }
+
+    let newAccounts = new Array(accounts.length+1); 
+
+    for (let i=0; i<accounts.length; i++) {
+        newAccounts[i] = accounts[i]; 
+    }
+
+    newAccounts[-1] = [uname, pwd, []]; 
+
+    writeData(newAccounts); 
+
     //let file = new File([""], "accountData1357908642.csv");
 
+}
+
+function addHist(uname, score) {
+    accounts = getAccounts();
+    //let accObj = accounts.find(account=>account.username===uname)
+    //accObj
+    for (let i=0; i<accounts.length; i++) {
+        if (accounts[i].username === uname) {
+            accounts[i].history.push(score);         
+        }
+        break; 
+    }
+    writeData(accounts); 
 }
 
 /*function editData(data) {
@@ -71,10 +114,11 @@ function login() {
 }*/
 
 function writeData(data) {
+    console.log("Writing data into file"); 
     fs.writeFileSync(JSON.stringify(data))
 }
 
-function getHist() {
+/*function getHist() {
     if (!checkCookieExists("uname")) {
         return; 
     } 
@@ -91,7 +135,7 @@ function getHist() {
         return; 
     }
     return allAccs[index].slice(2, allAccs[index].length); 
-}
+}*/
 
  function getAccounts(){
     console.log("Getting current accounts"); 

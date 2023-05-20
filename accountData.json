@@ -1,6 +1,6 @@
 [
     {
-        "user":"c",
+        "username":"c",
         "password":"who needs hashing",
         "history":[6,4,3]
     }
