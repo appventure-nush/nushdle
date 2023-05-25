@@ -194,11 +194,20 @@ let places = [
 ];
 
 let scaleFactor = 1.7353;
-let maxDistance = 414;
 let activeGuess = 1;
 let win = false;
 let date = getDate();
 let correct = places[Math.floor((mulberry32(cyrb32(date))()*100000))%32];
+
+var maxDistance = 0;
+var distance;
+for (const place of places) {
+    distance = (place.x - correct.x) ** 2 + (place.y - correct.y) ** 2 + 10 * (place.z - correct.z) ** 2;
+    if (maxDistance < distance) {
+        maxDistance = distance;
+    }
+}
+maxDistance = Math.sqrt(maxDistance) / scaleFactor;
 
 for (let i = 1; i <= 6; i++) {
     let element = document.getElementById(`guess${i}`);
@@ -296,18 +305,18 @@ function answerEntered(val) {
 
     // temp scaling:
 
-    let distance = Math.sqrt(dx ** 2 + dy ** 2)/scaleFactor;
-    let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10)/scaleFactor;
+    let trueDistance = Math.sqrt(dx ** 2 + dy ** 2 + dy ** 2 * 10) / scaleFactor;
 
-    let win = distance == 0;
+    let win = dx == 0 && dy == 0 && dz == 0;
 
     let exactDist = document.getElementById(`dist${activeGuess}`);
     let floor = document.getElementById(`floor${activeGuess}`);
-
-    exactDist.innerText = `${distance.toFixed(1)}m`;
+    
+    let innerTextDistance = Math.sqrt(dx ** 2 + dy ** 2) / scaleFactor
+    exactDist.innerText = `${innerTextDistance.toFixed(1)}m`;
     floor.innerText = `${Math.abs(dz.toFixed(0))}`; // add plus sign if positive
 
-    if (win && dz == 0) {
+    if (win) {
         console.log('win');
         floor.innerText = '🎉';
         exactDist.classList.toggle('invisible');
@@ -324,9 +333,9 @@ function answerEntered(val) {
     }
 
     // set green bar:
-    // scale the distance up, and make lower values of distance better. MUST BE CHANGED TO FIT DATA RANGE
-    distance = (maxDistance - trueDistance)/maxDistance * 100;
-    currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance}%, #374151 ${distance}% 100%)`;
+    // scale the distance up, and make lower values of distance better
+    let distance_bar = (1 - trueDistance / maxDistance) * 100;
+    currentElement.style = `background: linear-gradient(to right, #19a7a7 ${distance_bar}%, #374151 ${distance_bar}% 100%)`;
 
     document.cookie = "guess" + activeGuess.toString() + "=" + val + ";";
 
@@ -342,7 +351,7 @@ function answerEntered(val) {
         ans.innerText = `The answer was ${correct.name}`;
         ans.classList.toggle('hidden');
         return;
-    } else{
+    } else {
         activeGuess++;
     };
 
